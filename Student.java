@@ -1,41 +1,65 @@
 public class Student {
-        private String name;
-        private String gender;
-        private float height;
-        private float weight;
 
-        public Student(String studentName, String studentGender, float studentHeight, float studentWeight) {
-            name = studentName;
-            gender = studentGender;
-            height = studentHeight;
-            weight = studentWeight;
-        }
-        public void bmi() {
-            System.out.println("name: " + name);
-            System.out.println("gender: " + gender);
-            System.out.println("height: " + height);
-            System.out.println("weight: " + weight);
-            if (gender.equals("male")){
-                if (height <= 67 && weight >= 164){
-                    System.out.println(name + " is overweight");
-            }
-                else if (height <= 67 && weight < 164){
-                    System.out.println(name + " is healthy / underweight");
-            }
-                else if (height < 67 && weight >= 189){
-                    System.out.println(name + " is overweight");
-            }
-        }
-            else if (gender.equals("female")){
-                if (height <= 62 && weight >= 140){
-                    System.out.println(name + " is overweight");
-            }
-                else if (height <= 62 && weight < 140){
-                        System.out.println(name + " is healthy / underweight");
-                }
-                else if (height < 62 && weight >= 164){
-                    System.out.println(name + " is overweight");
-            }
-        }
-        }
-    }
+   private String firstName;
+   private String lastName;
+   private int gradYear;
+   private double accumulatedTestScores;
+   private int testScoreCount;
+ 
+   public Student(String firstName, String lastName, int gradYear) {
+       this.firstName = firstName;
+       this.lastName = lastName;
+       this.gradYear = gradYear;
+       accumulatedTestScores = 0.0;
+       testScoreCount = 0;
+   }
+
+   public String getFirstName() {
+       return firstName;
+   }
+
+   public String getLastName() {
+       return lastName;
+   }
+
+   public void setGradYear(int newGradYear) {
+       gradYear = newGradYear;
+   }
+
+   public void addTestScore(double newTestScore) {
+       accumulatedTestScores += newTestScore;
+       testScoreCount++;
+   }
+
+   public boolean isPassing() {
+       if (averageTestScore() >= 65) {
+           return true;
+       } else {
+           return false;
+       }
+   }
+
+   public double averageTestScore() {
+       double average = accumulatedTestScores / testScoreCount;
+       return average;
+   }
+
+   public void printStudentInfo() {
+       System.out.println("Student Full Name: " + firstName + " " + lastName);
+       System.out.println("Graduation Year: " + gradYear);
+       System.out.println("Number of tests: " + testScoreCount);
+       System.out.println("Average Test Score: " + averageTestScore());
+       System.out.println("Is passing: " + isPassing());
+   }
+
+   public String getStudentInfo() {
+       String info = "Student Full Name: " + firstName + " " + lastName + "\n";
+       info += "Graduation Year: " + gradYear + "\n";
+       info += "Number of tests: " + testScoreCount + "\n";
+       info += "Average Test Score: " + averageTestScore() + "\n";
+       info += "Is passing: " + isPassing();
+       return info;
+   }
+
+}
+
